@@ -1,12 +1,14 @@
 import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 
-import MyApp from './app/MyApp'
+import api from '../api/api';
 
-export default class App extends React.Component {
+export default class Home extends React.Component {
+
+
   render() {
     return (
-      <MyApp />
+      <View><Text>Welcome to Home</Text></View>
     );
   }
 }

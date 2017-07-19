@@ -1,12 +1,10 @@
 import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 
-import MyApp from './app/MyApp'
-
-export default class App extends React.Component {
+export default class Login extends React.Component {
   render() {
     return (
-      <MyApp />
+      <View><Text>Welcome to Login</Text></View>
     );
   }
 }

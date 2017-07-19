@@ -1,12 +1,18 @@
 import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
+import Api from '../api/api';
 
-import MyApp from './app/MyApp'
+const api = new Api();
 
-export default class App extends React.Component {
+export default class Feed extends React.Component {
+
+  componentDidMount() {
+    console.log(api.getUsers());
+  }
+
   render() {
     return (
-      <MyApp />
+      <View><Text>Welcome to Feed</Text></View>
     );
   }
 }

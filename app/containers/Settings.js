@@ -1,12 +1,10 @@
 import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 
-import MyApp from './app/MyApp'
-
-export default class App extends React.Component {
+export default class Settings extends React.Component {
   render() {
     return (
-      <MyApp />
+      <View><Text>Welcome to Settings</Text></View>
     );
   }
 }
