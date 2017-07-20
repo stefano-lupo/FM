@@ -1,25 +1,60 @@
 import React from 'react';
 import { StyleSheet, Text } from 'react-native';
-import { Scene, Router, TabBar } from 'react-native-router-flux';
+import { Scene, Router} from 'react-native-router-flux';
 
 import Login from './containers/Login';
 import Home from './containers/Home';
 import FindProvider from './containers/FindProvider';
-import Feed from './containers/Feed';
 import Settings from './containers/Settings';
 
+
+// Simple component to render something in place of icon
+const TabIcon = ({ selected, title }) => {
+  return (
+    <Text style={{color: selected ? 'red' :'black'}}>{title}</Text>
+  );
+}
+
 export default class MyApp extends React.Component {
+
   render() {
     return (
       <Router>
-        <Scene key="Route">
-          <Scene key="home" title="Home" tabs={true} hideNavBar={true} tabBarStyle={styles.tabBar}>
-            <Scene key="ProviderSearchTab" tabBarLabel="Providers" component={FindProvider} hideNavBar={true}>
+        <Scene key="root">
+          <Scene
+            key="tabbar"
+            tabBarPosition={"bottom"}
+            tabs={true}
+            tabBarStyle={{ backgroundColor: '#00aaFF' }} >
+
+            {/* Provider Search */}
+            <Scene key="providersTab" title="Providers" icon={TabIcon}>
+              <Scene
+                key="providers"
+                component={FindProvider}
+                title="Find Providers"
+              />
             </Scene>
-            <Scene key="FeedTab" tabBarLabel="Feed" component={Feed} hideNavBar={true}>
+
+            {/* Home */}
+            <Scene key="homeTab" title="Home" icon={TabIcon}>
+              <Scene
+                key="home"
+                component={Home}
+                title="Home"
+              />
             </Scene>
-            <Scene key="SettingsTab" tabBarLabel="Settings" component={Settings} hideNavBar={true}>
+
+            {/* Settings */}
+            <Scene key="settings" title="Settings" icon={TabIcon}>
+              <Scene
+                key="settingsTab"
+                component={Settings}
+                title="Settings"
+              />
             </Scene>
+
+
           </Scene>
         </Scene>
       </Router>
