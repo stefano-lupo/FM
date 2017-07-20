@@ -1,21 +1,24 @@
 import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { Provider } from 'react-redux';
+import { createStore, applyMiddleware } from 'redux';
+import thunk from 'redux-thunk';
+
+import Reducers from './app/reducers/';
 
 import MyApp from './app/MyApp'
 
+const store = createStore(
+  Reducers,
+  applyMiddleware(thunk)
+);
+
 export default class App extends React.Component {
+
   render() {
     return (
-      <MyApp />
+      <Provider store={store}>
+        <MyApp />
+      </Provider>
     );
   }
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});

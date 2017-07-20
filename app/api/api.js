@@ -1,17 +1,31 @@
-const URL = 'http://10.0.0.3:3000'
+const URL = 'http://192.168.1.11:3000';
 
 class Api {
-  getUsers(){
+  getUsers() {
     console.log("Fetching users");
-    return fetch(`${URL}/users`)
-      .then((response) => response.json())
-      .then((responseJson) => {
-      console.log(responseJson);
-        return responseJson;
-      })
-      .catch((error) => {
-        console.error(`Error: ${error}`);
-      });
+    return (fetch(`${URL}/users`)
+        .then((response) => response.json())
+        .then((responseJson) => {
+          console.log(responseJson);
+          return responseJson;
+        })
+        .catch((error) => {
+          console.log(`Error: ${error}`);
+        })
+    );
+  }
+
+  getCategories() {
+    return (
+      fetch(`${URL}/categories`)
+        .then((response) => response.json())
+        .then((responseJson) => {
+          return responseJson;
+        })
+        .catch((error) => {
+          console.log(`Error: ${error}`);
+        })
+    )
   }
 }
 
