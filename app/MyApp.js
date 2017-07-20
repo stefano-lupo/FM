@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, Text } from 'react-native';
+import { StyleSheet, Text, View } from 'react-native';
 import { Scene, Router} from 'react-native-router-flux';
 
 import Login from './containers/Login';
@@ -20,7 +20,7 @@ export default class MyApp extends React.Component {
   render() {
     return (
       <Router>
-        <Scene key="root">
+        <Scene hideNavBar="true" key="root">
           <Scene
             key="tabbar"
             tabBarPosition={"bottom"}

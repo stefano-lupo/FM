@@ -8,7 +8,8 @@ export default function (state = initialState, action) {
       console.log('Fetched Categories Reducer');
       //console.log(payload);
       return {
-        categories: payload
+        categories: payload,
+        categoriesFetched: true
       }
   }
   return state;
