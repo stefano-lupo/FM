@@ -6,6 +6,7 @@ import Login from './containers/Login';
 import Home from './containers/Home';
 import FindProvider from './containers/FindProvider';
 import Settings from './containers/Settings';
+import ProviderList from '../containers/ProviderList';
 
 
 // Simple component to render something in place of icon
@@ -33,6 +34,11 @@ export default class MyApp extends React.Component {
                 key="providers"
                 component={FindProvider}
                 title="Find Providers"
+              />
+              <Scene
+                key="providerList"
+                component={ProviderList}
+                title="Provider List"
               />
             </Scene>
 
