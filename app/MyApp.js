@@ -3,10 +3,14 @@ import { Text } from 'react-native';
 import { Scene, Router} from 'react-native-router-flux';
 
 import Login from './containers/Login';
+
 import Home from './containers/Home';
-import ProviderCategories from './containers/ProviderCategories';
+
 import Settings from './containers/Settings';
-import ProviderList from './containers/ProviderList';
+
+import ProviderCategories from './containers/providers/ProviderCategories';
+import ProviderList from './containers/providers/ProviderList';
+import ProviderProfile from './containers/providers/ProviderProfile';
 
 
 // Simple component to render something in place of icon
@@ -39,6 +43,12 @@ export default class MyApp extends React.Component {
                 key="providerList"
                 component={ProviderList}
                 title="Provider List"
+              />
+              <Scene
+                key="providerProfile"
+                component={ProviderProfile}
+                title="Provider Profile"
+                hideNavBar={true}
               />
             </Scene>
 

@@ -1,3 +1,5 @@
+import { createProvider } from '../records/Provider';
+
 const initialState = {categories: null};
 
 export default function (state = initialState, action) {
@@ -13,8 +15,9 @@ export default function (state = initialState, action) {
 
     case 'FETCHED_PROVIDERS_BY_CATEGORY':
       console.log('Fetched Providers by Category Reducer');
+      const providersByCategory = payload.map((provider) => createProvider(provider));
       return {
-        providersByCategory: payload,
+        providersByCategory
       }
 
   }

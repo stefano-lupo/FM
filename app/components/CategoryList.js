@@ -16,7 +16,7 @@ export default class CategoryList extends React.Component {
 
   render() {
     const { categories } = this.props;
-    console.log(categories);
+    //console.log(categories);
     return (
       <List>
         {

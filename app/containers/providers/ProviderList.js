@@ -3,8 +3,9 @@ import { Text } from 'react-native';
 import { List, ListItem } from 'react-native-elements';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
+import { Actions } from 'react-native-router-flux';
 
-import { fetchProvidersByCategory } from '../actions/providers';
+import { fetchProvidersByCategory } from '../../actions/providers';
 
 
 class ProviderList extends React.Component {
@@ -19,6 +20,7 @@ class ProviderList extends React.Component {
 
   render() {
     const { providers } = this.props;
+    //console.log(providers);
 
     if(!providers) return (<Text>Loading</Text>);
 
@@ -27,10 +29,11 @@ class ProviderList extends React.Component {
         {
           providers.map((provider) => (
             <ListItem
-              key={provider._id}
-              title={provider.firstName + provider.lastName}
+              key={provider.id}
+              title={provider.getName()}
               subtitle={provider.score}
               avatar={{uri: provider.thumbnail}}
+              onPress={() => Actions.providerProfile({provider})}
             />
           ))
         }

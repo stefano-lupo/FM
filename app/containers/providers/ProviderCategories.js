@@ -3,8 +3,8 @@ import { Text, View } from 'react-native';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
-import { fetchCategories } from '../actions/providers';
-import CategoryList from '../components/CategoryList';
+import { fetchCategories } from '../../actions/providers';
+import CategoryList from '../../components/CategoryList';
 
 class ProviderCategories extends React.Component {
 
