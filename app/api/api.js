@@ -1,4 +1,7 @@
-const URL = 'http://10.0.0.9:3000';
+import Request from './request';
+
+const URL = 'http://192.168.1.10:3000';
+let request = new Request();
 
 class Api {
   getUsers() {
@@ -15,16 +18,15 @@ class Api {
     );
   }
 
-  getCategories() {
+  static fetchCategories() {
     return (
-      fetch(`${URL}/categories`)
-        .then((response) => response.json())
-        .then((responseJson) => {
-          return responseJson;
-        })
-        .catch((error) => {
-          console.log(`Error: ${error}`);
-        })
+      request.get('/categories')
+    );
+  }
+
+  static fetchProvidersByCategory(category) {
+    return (
+      request.get('/providers/category/', [{ category }])
     )
   }
 }

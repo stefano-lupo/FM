@@ -1,12 +1,12 @@
 import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { Text } from 'react-native';
 import { Scene, Router} from 'react-native-router-flux';
 
 import Login from './containers/Login';
 import Home from './containers/Home';
-import FindProvider from './containers/FindProvider';
+import ProviderCategories from './containers/ProviderCategories';
 import Settings from './containers/Settings';
-import ProviderList from '../containers/ProviderList';
+import ProviderList from './containers/ProviderList';
 
 
 // Simple component to render something in place of icon
@@ -14,7 +14,7 @@ const TabIcon = ({ selected, title }) => {
   return (
     <Text style={{color: selected ? 'red' :'black'}}>{title}</Text>
   );
-}
+};
 
 export default class MyApp extends React.Component {
 
@@ -31,8 +31,8 @@ export default class MyApp extends React.Component {
             {/* Provider Search */}
             <Scene key="providersTab" title="Providers" icon={TabIcon}>
               <Scene
-                key="providers"
-                component={FindProvider}
+                key="providerCategories"
+                component={ProviderCategories}
                 title="Find Providers"
               />
               <Scene
@@ -42,6 +42,7 @@ export default class MyApp extends React.Component {
               />
             </Scene>
 
+
             {/* Home */}
             <Scene key="homeTab" title="Home" icon={TabIcon}>
               <Scene
@@ -50,6 +51,7 @@ export default class MyApp extends React.Component {
                 title="Home"
               />
             </Scene>
+
 
             {/* Settings */}
             <Scene key="settings" title="Settings" icon={TabIcon}>

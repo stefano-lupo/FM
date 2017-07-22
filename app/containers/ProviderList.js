@@ -1,32 +1,36 @@
 import React from 'react';
-import { Button, Text, View } from 'react-native';
+import { Text } from 'react-native';
 import { List, ListItem } from 'react-native-elements';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
-import { fetchCategories } from '../actions/providers';
-import CategoryList from '../components/CategoryList';
+import { fetchProvidersByCategory } from '../actions/providers';
 
-class FindProvider extends React.Component {
+
+class ProviderList extends React.Component {
 
   constructor(props) {
     super(props);
   }
 
   componentDidMount() {
-
+    this.props.fetchProvidersByCategory(this.props.category.category);
   }
 
   render() {
-    return null;
+    const { providers } = this.props;
+
+    if(!providers) return (<Text>Loading</Text>);
+
     return (
       <List>
         {
-          list.map((item, i) => (
+          providers.map((provider) => (
             <ListItem
-              key={i}
-              title={item.title}
-              leftIcon={{name: item.icon}}
+              key={provider._id}
+              title={provider.firstName + provider.lastName}
+              subtitle={provider.score}
+              avatar={{uri: provider.thumbnail}}
             />
           ))
         }
@@ -38,12 +42,11 @@ class FindProvider extends React.Component {
 
 function mapStateToProps(state) {
   return {
-    categories: state.ProvidersReducers.categories,
-    categoriesFetched: state.ProvidersReducers.categoriesFetched
+    providers: state.ProvidersReducers.providersByCategory,
   };
 }
 function matchDispatchToProps(dispatch){
-  return bindActionCreators({fetchCategories}, dispatch);
+  return bindActionCreators({fetchProvidersByCategory}, dispatch);
 }
 
-export default connect(mapStateToProps, matchDispatchToProps)(FindProvider);
+export default connect(mapStateToProps, matchDispatchToProps)(ProviderList);

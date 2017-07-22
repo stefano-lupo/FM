@@ -1,43 +1,34 @@
 import React from 'react';
 import { Actions } from 'react-native-router-flux';
-import { TouchableHighlight, Text, View, ListView } from 'react-native';
+import { List, ListItem } from 'react-native-elements';
 
 
 export default class CategoryList extends React.Component {
 
-  constructor(props) {
-    super(props);
-    const ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2});
-    this.state = {
-      dataSource: ds.cloneWithRows(props.categories),
-      ds,
-    };
-  }
 
   categorySelected(category) {
     if(category.subCategories) {
-      console.log("hit");
-      Actions.providers({subCategories: category.subCategories, parentCategory: category.category});
+      Actions.providerCategories({subCategories: category.subCategories, parentCategory: category.category});
+    } else {
+      Actions.providerList({category});
     }
   }
 
-  renderRow(category) {
-    return (
-      <TouchableHighlight style={{padding: 15,borderColor:'gray', borderTopWidth:1, borderBottomWidth: 1, backgroundColor: 'white', margin: 2}}
-                          onPress={() => this.categorySelected(category)}>
-        <View key={category._id}>
-          <Text style={{ fontSize:24}}>{ category.category }</Text>
-        </View>
-      </TouchableHighlight>
-    );
-  }
-
   render() {
+    const { categories } = this.props;
+    console.log(categories);
     return (
-      <ListView
-        dataSource={this.state.dataSource}
-        renderRow={(rowData) => this.renderRow(rowData)}
-      />
+      <List>
+        {
+          categories.map((category) => (
+            <ListItem
+              key={category._id}
+              title={category.category}
+              onPress={() => this.categorySelected(category)}
+            />
+          ))
+        }
+      </List>
     );
   }
 }

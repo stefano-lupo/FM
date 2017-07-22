@@ -4,13 +4,19 @@ export default function (state = initialState, action) {
   const { type, payload } = action;
 
   switch (type) {
+
     case 'FETCHED_CATEGORIES':
       console.log('Fetched Categories Reducer');
-      //console.log(payload);
       return {
         categories: payload,
-        categoriesFetched: true
+      };
+
+    case 'FETCHED_PROVIDERS_BY_CATEGORY':
+      console.log('Fetched Providers by Category Reducer');
+      return {
+        providersByCategory: payload,
       }
+
   }
   return state;
 }
