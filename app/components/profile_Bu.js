@@ -3,10 +3,9 @@
  */
 import React from 'react';
 import { Avatar, Grid, Row, Col, List, ListItem, Divider } from 'react-native-elements';
-import { Image, View, Text, StyleSheet, ScrollView, Dimensions } from 'react-native';
-import Carousel from 'react-native-looped-carousel';
+import { Image, View, Text, StyleSheet, ScrollView } from 'react-native';
+import Carousel from 'react-native-snap-carousel';
 
-const WIDTH = Dimensions.get('window').width;
 const styles = StyleSheet.create({
   header: {
     flex: 1,
@@ -28,18 +27,19 @@ const styles = StyleSheet.create({
     flex: 3,
     margin: 5,
   },
-  carouselContainer: {
-    height: WIDTH,
-    width: WIDTH,
-    borderWidth: 1,
-  },
-  carouselImage: {
-    borderWidth: 1,
-    height: WIDTH,
-    width: WIDTH,
-    resizeMode: 'cover',
-  }
 });
+
+<Carousel
+  delay={2000}
+  style={{width:400, height: 400}}
+  autoplay
+  pageInfo
+  onAnimateNextPage={(p) => console.log(p)}
+>
+  <View style={{ backgroundColor: '#BADA55', width:400, height:400 }}><Text>1</Text></View>
+  <View style={{ backgroundColor: 'red', width:400, height:400 }}><Text>2</Text></View>
+  <View style={{ backgroundColor: 'blue',width:400, height:400 }}><Text>3</Text></View>
+</Carousel>
 
 
 export default class Profile extends React.Component {
@@ -63,22 +63,16 @@ export default class Profile extends React.Component {
               <Text style={{fontStyle: 'italic'}}>{ provider.description }</Text>
             </View>
           </View>
-          <Carousel
-            delay={3000}
-            style={styles.carouselContainer}
-            autoplay
-            pageInfo
-            onAnimateNextPage={(p) => console.log(p)}
-          >
-            {provider.images.map((image) => {
-              console.log(image.url);
-              return (
-                <Image style={styles.carouselImage} source={{uri: image.url}} />
-              );
-
-            })
-            }
-          </Carousel>
+        </ScrollView>
+        <Carousel
+          ref={(carousel) => { this._carousel = carousel; }}
+          sliderWidth={400}
+          itemWidth={400} >
+          <Text>1</Text>
+          <Text>2 </Text>
+          <Text>3 </Text>
+        </Carousel>
+        <ScrollView>
           <List>
             {
               provider.reviews.map((review) => (
