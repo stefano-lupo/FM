@@ -2,9 +2,10 @@
  * Created by stefano on 23/07/17.
  */
 import React from 'react';
-import { Avatar, Grid, Row, Col, List, ListItem, Divider } from 'react-native-elements';
-import { Image, View, Text, StyleSheet, ScrollView, Dimensions } from 'react-native';
+import { List, ListItem, Divider, Text } from 'react-native-elements';
+import { Image, View, StyleSheet, ScrollView, Dimensions } from 'react-native';
 import Carousel from 'react-native-looped-carousel';
+import { Actions } from 'react-native-router-flux';
 
 const WIDTH = Dimensions.get('window').width;
 const styles = StyleSheet.create({
@@ -14,7 +15,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     backgroundColor: 'white',
     padding:10,
-    marginTop: 22,
+
   },
   avatarContainer: {
     flex: 1,
@@ -45,7 +46,13 @@ const styles = StyleSheet.create({
 export default class Profile extends React.Component {
 
   reviewSelected(review) {
-    console.log("hit");
+    Actions.providerReview({review});
+  }
+
+  reviewItemSubTitle(review) {
+    return(
+      <Text>{review.score}, from {review.by}</Text>
+    );
   }
 
   render() {
@@ -79,13 +86,14 @@ export default class Profile extends React.Component {
             })
             }
           </Carousel>
+          <Text h2>Reviews</Text>
           <List>
             {
               provider.reviews.map((review) => (
                 <ListItem
                   key={review._id}
-                  title={review.quickReview}
-                  subtite={"by " + review.by}
+                  title={<Text style={{fontSize: 20, fontStyle: "italic"}}>"{review.quickReview}"</Text>}
+                  subtitle={this.reviewItemSubTitle(review)}
                   onPress={() => this.reviewSelected(review)}
                 />
               ))

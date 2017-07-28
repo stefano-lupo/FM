@@ -11,6 +11,7 @@ import Settings from './containers/Settings';
 import ProviderCategories from './containers/providers/ProviderCategories';
 import ProviderList from './containers/providers/ProviderList';
 import ProviderProfile from './containers/providers/ProviderProfile';
+import ProviderReview from './containers/providers/ProviderReview';
 
 
 // Simple component to render something in place of icon
@@ -25,7 +26,7 @@ export default class MyApp extends React.Component {
   render() {
     return (
       <Router>
-        <Scene hideNavBar="true" key="root">
+        <Scene key="root">
           <Scene
             key="tabbar"
             tabBarPosition={"bottom"}
@@ -37,24 +38,31 @@ export default class MyApp extends React.Component {
               <Scene
                 key="providerCategories"
                 component={ProviderCategories}
-                title="Find Providers"
+                title="Categories"
               />
               <Scene
                 key="providerList"
                 component={ProviderList}
-                title="Provider List"
+                title="Providers List"
+                hideTabBar={true}
               />
               <Scene
                 key="providerProfile"
                 component={ProviderProfile}
                 title="Provider Profile"
-                hideNavBar={true}
+                hideTabBar={true}
+              />
+              <Scene
+                key="providerReview"
+                component={ProviderReview}
+                title="Provider Review"
+                hideTabBar={true}
               />
             </Scene>
 
 
             {/* Home */}
-            <Scene key="homeTab" title="Home" icon={TabIcon}>
+            <Scene key="homeTab" title="Home" icon={TabIcon} initial={true}>
               <Scene
                 key="home"
                 component={Home}
@@ -74,6 +82,8 @@ export default class MyApp extends React.Component {
 
 
           </Scene>
+
+          <Scene key="login" title="Login" component={Login} initial={true} />
         </Scene>
       </Router>
     );

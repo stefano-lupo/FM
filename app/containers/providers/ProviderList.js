@@ -4,6 +4,7 @@ import { List, ListItem } from 'react-native-elements';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { Actions } from 'react-native-router-flux';
+import { Spinner } from 'native-base';
 
 import { fetchProvidersByCategory } from '../../actions/providers';
 
@@ -22,7 +23,7 @@ class ProviderList extends React.Component {
     const { providers } = this.props;
     //console.log(providers);
 
-    if(!providers) return (<Text>Loading</Text>);
+    if(!providers) return (<Spinner />);
 
     return (
       <List>

@@ -2,15 +2,12 @@ import React from 'react';
 import { Text, View } from 'react-native';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
+import { Spinner, H1 } from 'native-base';
 
 import { fetchCategories } from '../../actions/providers';
 import CategoryList from '../../components/CategoryList';
 
 class ProviderCategories extends React.Component {
-
-  constructor(props) {
-    super(props);
-  }
 
   componentDidMount() {
     console.log("CDM");
@@ -24,12 +21,12 @@ class ProviderCategories extends React.Component {
     if(categories) {
       return (
         <View style={{paddingTop: 20}}>
-          <Text>{this.props.parentCategory || "Categories"}</Text>
+          <H1 center>{this.props.parentCategory || "Categories"}</H1>
           <CategoryList categories={categories}/>
         </View>
       );
     } else {
-        return (<Text>Loading..</Text>)
+        return (<Spinner />)
     }
   }
 }

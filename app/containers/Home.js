@@ -1,23 +1,26 @@
 import React from 'react';
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
+
 import { StyleSheet, Text, View } from 'react-native';
 
-import api from '../api/api';
-
-export default class Home extends React.Component {
+class Home extends React.Component {
 
 
   render() {
     return (
-      <View><Text>Welcome to Home</Text></View>
+      <View><Text>Welcome to {this.props.authToken}</Text></View>
     );
   }
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
+function mapStateToProps(state) {
+  return {
+    authToken: state.AccountReducers.authToken,
+  };
+}
+// function matchDispatchToProps(dispatch){
+//   return bindActionCreators({fetchProvidersByCategory}, dispatch);
+// }
+
+export default connect(mapStateToProps, null)(Home);

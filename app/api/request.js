@@ -1,5 +1,5 @@
 const URL = 'http://192.168.1.10:3000';
-
+// const URL = 'http://86.43.98.198:3000';
 const headers = {
   "Content-Type": "application/json"
 };
@@ -21,6 +21,10 @@ class Request {
         return response.json();
       }
     )
+  }
+
+  post(endpoint = "", params=[]) {
+
   }
 
 }

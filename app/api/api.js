@@ -4,19 +4,6 @@ const URL = 'http://192.168.1.10:3000';
 let request = new Request();
 
 class Api {
-  getUsers() {
-    console.log("Fetching users");
-    return (fetch(`${URL}/users`)
-        .then((response) => response.json())
-        .then((responseJson) => {
-          console.log(responseJson);
-          return responseJson;
-        })
-        .catch((error) => {
-          console.log(`Error: ${error}`);
-        })
-    );
-  }
 
   static fetchCategories() {
     return (
@@ -29,6 +16,11 @@ class Api {
       request.get('/providers/category/', [{ category }])
     )
   }
+
+  static logIn() {
+    console.log("Logged in ");
+  }
+
 }
 
 export default Api;
