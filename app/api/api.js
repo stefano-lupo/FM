@@ -17,8 +17,10 @@ class Api {
     )
   }
 
-  static logIn() {
-    console.log("Logged in ");
+  static logIn(fbAccessToken) {
+    return (
+      request.post('/auth/facebook', { fbAccessToken })
+    );
   }
 
 }

@@ -8,17 +8,18 @@ export default function (state = initialState, action) {
   switch (type) {
 
     case 'LOGGED_IN':
-      console.log('Logged in Reducer: ' + payload);
+      console.log(`Logged in Reducer: ${payload.message}`);
+      const { authToken } = payload;
       return {
-        authToken: payload,
+        authToken
       };
 
-    case 'FETCHED_USER_EMAIL':
-      console.log(`Fetched user email ${payload.email}`);
+    case 'LOG_IN_FAILED':
+      console.log(`Log In failed ${payload.message}`);
       return {
-        email: payload.email
-      }
-
+        authToken: null
+      };
   }
+
   return state;
 }
