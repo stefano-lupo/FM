@@ -8,9 +8,6 @@ import { StyleSheet, Text, View, Button, Alert } from 'react-native';
 
 import { loggedIn } from '../actions/account';
 
-// todo delete this!
-//"Cr02#a$BdPUIzGvh6l%aPSnwW2!pVJO^ZYCbNb55ai8YmmIAyC2!nFALZrpRlY6brtdt6c8MY5@R*80sATA$LXotY22l!&5706ko^ALjTApYiVJMXswd2SWUyfxd7cqz"
-
 class Login extends React.Component {
 
   async logIn() {
@@ -22,19 +19,13 @@ class Login extends React.Component {
       await Actions.replace('tabbar');
     }
   }
-  //
-  // logIn() {
-  //   console.log("thi");
-  //   this.props.loggedIn("Penmis");
-  //   Actions.home();
-  // }
 
   render() {
     return (
       <View style={{flex: 1, alignItems: 'center', justifyContent: 'center'}}>
         <Text>Welcome to Find Me! </Text>
-        <Button title="Log in with Facebook" onPress={() => this.logIn()}
-        /></View>
+        <Button onPress={() => this.logIn()} title="Login with Facebook" />
+      </View>
     );
   }
 }
@@ -46,7 +37,7 @@ function mapStateToProps(state) {
   };
 }
 function matchDispatchToProps(dispatch){
-  return bindActionCreators({loggedIn}, dispatch);
+  return bindActionCreators({ loggedIn }, dispatch);
 }
 
 export default connect(mapStateToProps, matchDispatchToProps)(Login);

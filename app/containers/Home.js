@@ -9,14 +9,14 @@ class Home extends React.Component {
 
   render() {
     return (
-      <View><Text>Welcome to {this.props.authToken}</Text></View>
+      <View><Text>Welcome to {this.props.email}</Text></View>
     );
   }
 }
 
 function mapStateToProps(state) {
   return {
-    authToken: state.AccountReducers.authToken,
+    email: state.AccountReducers.email,
   };
 }
 // function matchDispatchToProps(dispatch){

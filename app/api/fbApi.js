@@ -2,23 +2,18 @@ import Request from './request';
 
 const URL = 'https://graph.facebook.com/';
 
+let request = new Request(URL);
 
-class fbApi {
+class FBApi {
 
-  static setAuthToken(authToken) {
-    this.authToken = authToken;
+  static setAccessToken(accessToken) {
+    console.log(`Setting access token: ${accessToken}`);
+    this.accessToken = accessToken;
   }
 
   static fetchUserEmail() {
-    return fetch(`${URL}me?fields=email&access_token=${this.authToken}`)
-      .then((response) => { return response.json(); });
-  }
-
-  static fetchProvidersByCategory(category) {
-    return (
-      request.get('/providers/category/', [{ category }])
-    )
+    return request.get(`me?fields=email&access_token=${this.accessToken}`);
   }
 }
 
-export default Api;
+export default FBApi;

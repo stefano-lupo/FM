@@ -21,7 +21,7 @@ const TabIcon = ({ selected, title }) => {
   );
 };
 
-export default class MyApp extends React.Component {
+export default class AppRouter extends React.Component {
 
   render() {
     return (

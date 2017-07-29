@@ -13,6 +13,11 @@ export default function (state = initialState, action) {
         authToken: payload,
       };
 
+    case 'FETCHED_USER_EMAIL':
+      console.log(`Fetched user email ${payload.email}`);
+      return {
+        email: payload.email
+      }
 
   }
   return state;

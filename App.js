@@ -1,12 +1,12 @@
 import React from 'react';
+import { Text } from 'react-native';
 import { Provider } from 'react-redux';
 import { createStore, applyMiddleware } from 'redux';
 import thunk from 'redux-thunk';
 import { Spinner } from 'native-base';
 
 import Reducers from './app/reducers/';
-
-import MyApp from './app/MyApp'
+import AppRouter from './app/AppRouter'
 
 const store = createStore(
   Reducers,
@@ -17,7 +17,7 @@ export default class App extends React.Component {
 
   state = {
     fontLoaded: false
-  }
+  };
 
   async componentWillMount() {
     await Expo.Font.loadAsync({
@@ -30,11 +30,11 @@ export default class App extends React.Component {
     if(this.state.fontLoaded) {
       return (
         <Provider store={store}>
-          <MyApp />
+         <AppRouter />
         </Provider>
       );
     } else {
-      return <Spinner />
+      return <Spinner />;
     }
   }
 }
