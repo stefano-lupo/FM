@@ -10,7 +10,6 @@ import CategoryList from '../../components/CategoryList';
 class ProviderCategories extends React.Component {
 
   componentDidMount() {
-    console.log("CDM");
     if(!this.props.categories) {
       this.props.fetchCategories();
     }
@@ -32,9 +31,9 @@ class ProviderCategories extends React.Component {
 }
 
 
-function mapStateToProps(state) {
+function mapStateToProps({ providers: { categories } }) {
   return {
-    categories: state.ProvidersReducers.categories
+    categories,
   };
 }
 function matchDispatchToProps(dispatch){

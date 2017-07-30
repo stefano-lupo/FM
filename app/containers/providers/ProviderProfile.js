@@ -12,7 +12,7 @@ class ProviderProfile extends React.Component {
 
   componentDidMount() {
     // Fetch reviews etc, merge into currentPRovider?
-    //this.props.fetchProvidersByCategory(this.props.category.category);
+    //this.props.getProvidersByCategory(this.props.category.category);
   }
 
   render() {
@@ -24,9 +24,9 @@ class ProviderProfile extends React.Component {
 }
 
 
-function mapStateToProps(state) {
+function mapStateToProps({ providers: { providersByCategory } }) {
   return {
-    providers: state.ProvidersReducers.providersByCategory,
+    providersByCategory
   };
 }
 function matchDispatchToProps(dispatch){

@@ -16,13 +16,11 @@ const ProviderRecord = Immutable.Record({
 export class Provider extends ProviderRecord {
 
   getName() {
-    console.log("Getting name");
     return `${this.firstName} ${this.lastName}`;
   }
 }
 
 export function createProvider(providerData) {
-  console.log(providerData);
   const { images, reviews, _id } = providerData;
 
   return new Provider({

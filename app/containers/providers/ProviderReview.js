@@ -42,12 +42,11 @@ class ProviderReview extends React.Component {
 
   componentDidMount() {
     // Fetch reviews etc, merge into currentPRovider?
-    //this.props.fetchProvidersByCategory(this.props.category.category);
+    //this.props.getProvidersByCategory(this.props.category.category);
   }
 
   render() {
     const { review } = this.props;
-    console.log(review);
     return (
       <Container style={{paddingTop: 22}}>
         <ScrollView>
@@ -74,7 +73,6 @@ class ProviderReview extends React.Component {
             onAnimateNextPage={(p) => console.log(p)}
           >
             {review.reviewerImages.map((image) => {
-              console.log(image.source);
               return (
                 <Image style={styles.carouselImage} source={{uri: image.source}} />
               );
@@ -90,9 +88,9 @@ class ProviderReview extends React.Component {
 }
 
 
-function mapStateToProps(state) {
+function mapStateToProps({ providers: { providersByCategory } }) {
   return {
-    providers: state.ProvidersReducers.providersByCategory,
+    providersByCategory
   };
 }
 function matchDispatchToProps(dispatch){

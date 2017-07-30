@@ -1,28 +1,34 @@
-import Request from './request';
+import Http from './http';
 
 const URL = 'http://192.168.1.10:3000';
-let request = new Request();
+// const URL='http://10.0.0.9:3000';
+//  const URL = 'http://86.43.98.198:3000';
 
-class Api {
+class Api extends Http {
 
-  static fetchCategories() {
+  constructor(url, tokenSource) {
+    console.log("\n\n**************************constructing api instance\n\n");
+    super(url, tokenSource);
+  }
+
+  getCategories() {
     return (
-      request.get('/categories')
+      this.get('/categories')
     );
   }
 
-  static fetchProvidersByCategory(category) {
+  getProvidersByCategory(category) {
     return (
-      request.get('/providers/category/', [{ category }])
+      this.get('/providers/category/', [{ category }])
     )
   }
 
-  static logIn(fbAccessToken) {
+   logIn(fbAccessToken) {
     return (
-      request.post('/auth/facebook', { fbAccessToken })
+      this.post('/auth/facebook', { fbAccessToken })
     );
   }
 
 }
 
-export default Api;
+export default api = new Api(URL, 'authToken');

@@ -78,7 +78,6 @@ export default class Profile extends React.Component {
             onAnimateNextPage={(p) => console.log(p)}
           >
             {provider.images.map((image) => {
-              console.log(image.url);
               return (
                 <Image style={styles.carouselImage} source={{uri: image.url}} />
               );

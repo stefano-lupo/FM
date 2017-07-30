@@ -11,7 +11,6 @@ import { loggedInToFB } from '../actions/account';
 class Login extends React.Component {
 
   componentWillReceiveProps(nextProps) {
-    console.log("received props");
     if(nextProps.authToken) {
       Actions.replace('tabbar');
     }
@@ -29,7 +28,7 @@ class Login extends React.Component {
   render() {
     return (
       <View style={{flex: 1, alignItems: 'center', justifyContent: 'center'}}>
-        <Text>Welcome to Find Me! </Text>
+        <Text>Welcome to FindMe! </Text>
         <Button onPress={() => this.logIn()} title="Login with Facebook" />
       </View>
     );
@@ -37,7 +36,7 @@ class Login extends React.Component {
 }
 
 
-function mapStateToProps({ AccountReducers : { authToken }}) {
+function mapStateToProps({ account : { authToken }}) {
   return {
     authToken
   };

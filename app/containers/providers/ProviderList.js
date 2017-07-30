@@ -21,7 +21,6 @@ class ProviderList extends React.Component {
 
   render() {
     const { providers } = this.props;
-    //console.log(providers);
 
     if(!providers) return (<Spinner />);
 
@@ -44,9 +43,9 @@ class ProviderList extends React.Component {
 }
 
 
-function mapStateToProps(state) {
+function mapStateToProps({ providers }) {
   return {
-    providers: state.ProvidersReducers.providersByCategory,
+    providers: providers.providersByCategory,
   };
 }
 function matchDispatchToProps(dispatch){

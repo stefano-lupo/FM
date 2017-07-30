@@ -8,7 +8,7 @@ import { Spinner } from 'native-base';
 import Reducers from './app/reducers/';
 import AppRouter from './app/AppRouter'
 
-const store = createStore(
+export const store = createStore(
   Reducers,
   applyMiddleware(thunk)
 );

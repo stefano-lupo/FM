@@ -1,18 +1,13 @@
-import FBApi from '../api/fbApi';
-import Api from '../api/api';
+import api from '../api/api';
 
 export const loggedInToFB = (fbAccessToken) => {
-  console.log("Logged in action: " + fbAccessToken);
-  FBApi.setAccessToken(fbAccessToken)
   return dispatch => {
-    Api.logIn(fbAccessToken).then(payload => {
-      console.log(payload);
+    dispatch({type: 'LOGGED_IN_TO_FB', payload: fbAccessToken});
+    api.logIn(fbAccessToken).then(payload => {
       if(payload.isLoggedIn) {
         dispatch({ type: 'LOGGED_IN', payload });
-      } else {
-        dispatch({type: 'LOG_IN_FAILED', payload});
       }
     }).catch(error => console.log(error));
   }
-
 };
+

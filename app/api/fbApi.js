@@ -1,19 +1,21 @@
-import Request from './request';
+import Http from './http';
 
-const URL = 'https://graph.facebook.com/';
+const URL = 'https://graph.facebook.com';
 
-let request = new Request(URL);
+class FBApi extends Http {
 
-class FBApi {
-
-  static setAccessToken(accessToken) {
-    console.log(`Setting access token: ${accessToken}`);
-    this.accessToken = accessToken;
+  constructor(url, tokenSource) {
+    console.log("\n\n**************************constructing facebook api instance\n\n");
+    super(url, tokenSource);
   }
 
-  static fetchUserEmail() {
-    return request.get(`me?fields=email&access_token=${this.accessToken}`);
+  // Ready for facebook methods
+  getUserFBProfilePicture() {
+    console.log("Getting cover photo");
+    return this.get('/me', [{fields: 'cover'}]);
   }
+
+
 }
 
-export default FBApi;
+export default fbApi = new FBApi(URL, 'fbAccessToken');

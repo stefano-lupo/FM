@@ -1,5 +1,3 @@
-import { createProvider } from '../records/Provider';
-
 const initialState = {authToken: undefined};
 
 export default function (state = initialState, action) {
@@ -7,17 +5,20 @@ export default function (state = initialState, action) {
 
   switch (type) {
 
-    case 'LOGGED_IN':
-      console.log(`Logged in Reducer: ${payload.message}`);
-      const { authToken } = payload;
+    case 'LOGGED_IN_TO_FB': {
+      const fbAccessToken = payload;
       return {
-        authToken
+        ...state,
+        fbAccessToken
       };
+    }
 
-    case 'LOG_IN_FAILED':
-      console.log(`Log In failed ${payload.message}`);
+    case 'LOGGED_IN':
+      const { authToken, user } = payload;
       return {
-        authToken: null
+        ...state,
+        authToken,
+        user
       };
   }
 

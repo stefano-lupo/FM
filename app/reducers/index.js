@@ -1,12 +1,12 @@
 import {combineReducers} from 'redux';
-import ProvidersReducers from './providers';
-import UsersReducers from './users';
-import AccountReducers from './account';
+import providers from './providers';
+import user from './users';
+import account from './account';
 
 const Reducers = combineReducers({
-  UsersReducers,
-  ProvidersReducers,
-  AccountReducers
+  user,
+  providers,
+  account
 });
 
 export default Reducers;

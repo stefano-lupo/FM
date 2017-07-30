@@ -4,23 +4,31 @@ import { bindActionCreators } from 'redux';
 
 import { StyleSheet, Text, View } from 'react-native';
 
+
 class Home extends React.Component {
 
+  componentDidMount() {
+  }
 
   render() {
     return (
-      <View><Text>Welcome to {this.props.email}</Text></View>
+      <View>
+        <Text>Welcome { this.props.user.firstName }</Text>
+        <Text>Auth Token: { this.props.authToken }</Text>
+      </View>
     );
   }
 }
 
-function mapStateToProps(state) {
+function mapStateToProps({ account: { authToken, user } }) {
   return {
-    email: state.AccountReducers.email,
+    authToken,
+    user,
   };
 }
+
 // function matchDispatchToProps(dispatch){
-//   return bindActionCreators({fetchProvidersByCategory}, dispatch);
+//   return bindActionCreators({ fetchUserCoverPhoto }, dispatch);
 // }
 
 export default connect(mapStateToProps, null)(Home);
