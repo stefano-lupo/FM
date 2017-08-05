@@ -1,8 +1,6 @@
-/**
- * Created by stefano on 23/07/17.
- */
 import React from 'react';
 import { List, ListItem, Divider, Text } from 'react-native-elements';
+import { Button } from 'native-base';
 import { Image, View, StyleSheet, ScrollView, Dimensions } from 'react-native';
 import Carousel from 'react-native-looped-carousel';
 import { Actions } from 'react-native-router-flux';
@@ -45,6 +43,10 @@ const styles = StyleSheet.create({
 
 export default class Profile extends React.Component {
 
+  onRequestJob(provider) {
+    Action.requestJob({provider});
+  }
+
   reviewSelected(review) {
     Actions.providerReview({review});
   }
@@ -85,6 +87,9 @@ export default class Profile extends React.Component {
             })
             }
           </Carousel>
+          <Button full onPress={this.requestJob(provider)}>
+            <Text>Request a job</Text>
+          </Button>
           <Text h2>Reviews</Text>
           <List>
             {

@@ -4,6 +4,7 @@ import { List } from 'immutable';
 import { User } from './User';
 
 export const Account = new Record({
+  _id: undefined,
   accountAuthToken: undefined,       // should become auth object with token and expiry fields
   fbAccessToken: undefined,
   email: undefined,

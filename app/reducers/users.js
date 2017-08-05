@@ -1,4 +1,4 @@
-import { User } from '../records/User';
+import { User, createUser } from '../records/User';
 
 const initialState = new User();
 
@@ -8,8 +8,9 @@ export default function (state = initialState, action) {
   switch (type) {
 
     case 'LOGGED_IN': {
-      const { user } = payload;
+      let { user } = payload;
       console.log(`Logged in User reducer`);
+      user = createUser(user);
       console.log(user);
       return user;
     }
