@@ -33,7 +33,7 @@ class Http {
       })
     });
 
-    //console.log(`${this.url}${endpoint}`);
+    console.log(`${this.url}${endpoint}`);
 
     return fetch(`${this.url}${endpoint}`,{method: "GET", headers: this.getHeaders()})
       .then(function(response) {

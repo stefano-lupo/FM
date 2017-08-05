@@ -30,6 +30,7 @@ class Login extends React.Component {
       <View style={{flex: 1, alignItems: 'center', justifyContent: 'center'}}>
         <Text>Welcome to FindMe! </Text>
         <Button onPress={() => this.logIn()} title="Login with Facebook" />
+        <Button onPress={() => Actions.register()} title="Register as Provider" />
       </View>
     );
   }

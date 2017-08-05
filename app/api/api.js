@@ -1,7 +1,8 @@
 import Http from './http';
 
-const URL = 'http://192.168.1.10:3000';
+// const URL = 'http://192.168.1.10:3000';
 // const URL='http://10.0.0.9:3000';
+const URL = 'http://192.168.1.28:3000';
 //  const URL = 'http://86.43.98.198:3000';
 
 class Api extends Http {
@@ -24,9 +25,11 @@ class Api extends Http {
   }
 
    logIn(fbAccessToken) {
-    return (
-      this.post('/auth/facebook', { fbAccessToken })
-    );
+    return this.post('/auth/facebook', { fbAccessToken });
+  }
+
+  register(registerForm) {
+    return this.post('/auth/register', { registerForm });
   }
 
 }

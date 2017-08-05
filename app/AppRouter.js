@@ -3,6 +3,7 @@ import { Text } from 'react-native';
 import { Scene, Router} from 'react-native-router-flux';
 
 import Login from './containers/Login';
+import Register from './containers/Register';
 
 import Home from './containers/Home';
 
@@ -84,6 +85,7 @@ export default class AppRouter extends React.Component {
           </Scene>
 
           <Scene key="login" title="Login" component={Login} initial={true} />
+          <Scene key="register" title="Register" component={Register} />
         </Scene>
       </Router>
     );

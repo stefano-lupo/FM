@@ -8,6 +8,8 @@ export default function (state = initialState, action) {
   switch (type) {
 
     case 'FETCHED_CATEGORIES':
+      console.log("Fetched Categories");
+      console.log(payload);
       return {
         categories: payload,
       };

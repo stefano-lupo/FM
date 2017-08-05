@@ -11,3 +11,13 @@ export const loggedInToFB = (fbAccessToken) => {
   }
 };
 
+export const register = (registerForm) => {
+  return dispatch => {
+    api.register(registerForm).then(payload => {
+      if(payload.success) {
+        dispatch({ type: 'REGISTERED', payload });
+      }
+      return null;
+    }).catch(error => console.log(error));
+  }
+};

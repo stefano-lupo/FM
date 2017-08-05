@@ -17,6 +17,7 @@ class ProviderCategories extends React.Component {
 
   render() {
     const categories = this.props.subCategories || this.props.categories;
+    console.log(categories);
     if(categories) {
       return (
         <View style={{paddingTop: 20}}>

@@ -1,3 +1,5 @@
+import { Account, createAccount } from '../records/Account';
+
 const initialState = {authToken: undefined};
 
 export default function (state = initialState, action) {
@@ -13,13 +15,23 @@ export default function (state = initialState, action) {
       };
     }
 
-    case 'LOGGED_IN':
-      const { authToken, user } = payload;
+    case 'LOGGED_IN': {
+      const {authToken, user} = payload;
       return {
         ...state,
         authToken,
         user
       };
+    }
+
+    case 'REGISTERED': {
+      const { account, accountAuthToken } = payload;
+
+      const accountRecord = createAccount(account, accountAuthToken);
+      return {
+        ...accountRecord
+      }
+    }
   }
 
   return state;

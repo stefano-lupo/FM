@@ -11,6 +11,7 @@ class Home extends React.Component {
   }
 
   render() {
+    console.log(this.props.authToken);
     return (
       <View>
         <Text>Welcome { this.props.user.firstName }</Text>
