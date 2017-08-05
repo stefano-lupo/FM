@@ -4,12 +4,16 @@ import { Provider } from 'react-redux';
 import { createStore, applyMiddleware } from 'redux';
 import thunk from 'redux-thunk';
 import { Spinner } from 'native-base';
+import Immutable from 'immutable';
 
 import Reducers from './app/reducers/';
-import AppRouter from './app/AppRouter'
+import AppRouter from './app/AppRouter';
+
+const initialState = Immutable.Map();
 
 export const store = createStore(
   Reducers,
+  initialState,
   applyMiddleware(thunk)
 );
 

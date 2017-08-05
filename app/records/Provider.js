@@ -20,7 +20,7 @@ export class Provider extends ProviderRecord {
   }
 }
 
-export function createProvider(providerData) {
+export const createProvider = (providerData) => {
   const { images, reviews, _id } = providerData;
 
   return new Provider({

@@ -1,12 +1,10 @@
-import {combineReducers} from 'redux';
+import { combineReducers } from 'redux-immutable';
 import providers from './providers';
 import user from './users';
 import account from './account';
 
-const Reducers = combineReducers({
+export default Reducers = combineReducers({
   user,
   providers,
   account
 });
-
-export default Reducers;

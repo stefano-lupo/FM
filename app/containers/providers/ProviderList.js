@@ -43,9 +43,9 @@ class ProviderList extends React.Component {
 }
 
 
-function mapStateToProps({ providers }) {
+function mapStateToProps(store) {
   return {
-    providers: providers.providersByCategory,
+    providers: store.get('providers').get('providersByCategory'),
   };
 }
 function matchDispatchToProps(dispatch){

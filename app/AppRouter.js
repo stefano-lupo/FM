@@ -84,7 +84,7 @@ export default class AppRouter extends React.Component {
 
           </Scene>
 
-          <Scene key="login" title="Login" component={Login} initial={true} />
+          <Scene key="login" title="Login" component={Login} initial={true} hideNavBar={true} />
           <Scene key="register" title="Register" component={Register} />
         </Scene>
       </Router>

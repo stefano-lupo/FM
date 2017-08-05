@@ -10,16 +10,14 @@ export const Account = new Record({
   firstName: undefined,
   lastName: undefined,
   providers: new List(),
-  User: new User(),
 });
 
 
 
-export function createAccount(accountData, accountAuthToken) {
+export function createAccount(accountData, fbAccessToken) {
   return new Account({
+    fbAccessToken,
     ...accountData,
     providers: new List(accountData.providers),
-    user: new User(),
-    accountAuthToken,
   })
 }

@@ -24,13 +24,13 @@ class ProviderProfile extends React.Component {
 }
 
 
-function mapStateToProps({ providers: { providersByCategory } }) {
-  return {
-    providersByCategory
-  };
-}
-function matchDispatchToProps(dispatch){
-  return bindActionCreators({fetchProvidersByCategory}, dispatch);
-}
+// function mapStateToProps({ providers: { providersByCategory } }) {
+//   return {
+//     providersByCategory
+//   };
+// }
+// function matchDispatchToProps(dispatch){
+//   return bindActionCreators({fetchProvidersByCategory}, dispatch);
+// }
 
-export default connect(mapStateToProps, matchDispatchToProps)(ProviderProfile);
+export default connect(null, null)(ProviderProfile);

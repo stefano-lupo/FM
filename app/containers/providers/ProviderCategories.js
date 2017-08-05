@@ -11,13 +11,12 @@ class ProviderCategories extends React.Component {
 
   componentDidMount() {
     if(!this.props.categories) {
-      this.props.fetchCategories();
+     this.props.fetchCategories();
     }
   }
 
   render() {
     const categories = this.props.subCategories || this.props.categories;
-    console.log(categories);
     if(categories) {
       return (
         <View style={{paddingTop: 20}}>
@@ -32,9 +31,9 @@ class ProviderCategories extends React.Component {
 }
 
 
-function mapStateToProps({ providers: { categories } }) {
+function mapStateToProps(store) {
   return {
-    categories,
+    categories: store.get('providers').get('categories'),
   };
 }
 function matchDispatchToProps(dispatch){

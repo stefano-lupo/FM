@@ -11,20 +11,24 @@ class Home extends React.Component {
   }
 
   render() {
-    console.log(this.props.authToken);
+    const { accountAuthToken, email, fbAccessToken } = this.props.account;
+    const { userAuthToken, firstName, lastName } = this.props.user;
     return (
       <View>
-        <Text>Welcome { this.props.user.firstName }</Text>
-        <Text>Auth Token: { this.props.authToken }</Text>
+        <Text>Welcome { firstName } {lastName }</Text>
+        <Text>Email: { email }</Text>
+        <Text>FBToken: { fbAccessToken }</Text>
+        <Text>Account Auth Token: { accountAuthToken.substr(0,10) }</Text>
+        <Text>User Auth Token: { userAuthToken.substr(0,10) }</Text>
       </View>
     );
   }
 }
 
-function mapStateToProps({ account: { authToken, user } }) {
+function mapStateToProps(store) {
   return {
-    authToken,
-    user,
+    account: store.get('account'),
+    user: store.get('user'),
   };
 }
 

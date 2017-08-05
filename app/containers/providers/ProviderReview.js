@@ -97,4 +97,4 @@ function matchDispatchToProps(dispatch){
   return bindActionCreators({fetchProvidersByCategory}, dispatch);
 }
 
-export default connect(mapStateToProps, matchDispatchToProps)(ProviderReview);
+export default connect(null, null)(ProviderReview);

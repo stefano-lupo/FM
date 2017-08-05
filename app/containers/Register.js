@@ -59,6 +59,7 @@ class Register extends React.Component {
   }
   
   render() {
+    console.log(this.props.account);
     return (
       <ScrollView style={styles.container}>
         <View style={styles.header}>
@@ -104,9 +105,9 @@ class Register extends React.Component {
 }
 
 
-function mapStateToProps({ account }) {
+function mapStateToProps(store) {
   return {
-    account
+    account: store.get('account')
   };
 }
 function matchDispatchToProps(dispatch){
