@@ -1,7 +1,7 @@
 import Immutable from 'immutable';
 
 const ProviderRecord = Immutable.Record({
-  id: undefined,
+  _id: undefined,
   firstName: "Joe",
   lastName: "Blogs",
   email: undefined,
@@ -25,7 +25,7 @@ export const createProvider = (providerData) => {
 
   return new Provider({
     ...providerData,
-    id: _id,
+    _id,
     images: new Immutable.List(images),
     reviews: new Immutable.List(reviews)
   })

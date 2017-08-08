@@ -7,11 +7,12 @@ const UserRecord = new Record({
   firstName: undefined,
   lastName: undefined,
   jobs: {
+    requested: new List(),
     active: new List(),
     completed: new List(),
   },
   reviews: new List(),
-  rating: undefined,
+  rating: undefined,  
 });
 
 export class User extends UserRecord {
@@ -25,8 +26,9 @@ export function createUser(userData) {
   return new User({
     ...userData,
     jobs: {
-      active: List(userData.jobs.active),
-      completed: List(userData.jobs.completed)
+      requested: new List(userData.jobs.requested),
+      active: new List(userData.jobs.active),
+      completed: new List(userData.jobs.completed)
     },
     reviews: List(userData.reviews),
   });

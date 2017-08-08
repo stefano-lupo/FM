@@ -6,5 +6,5 @@ import account from './account';
 export default Reducers = combineReducers({
   user,
   providers,
-  account
+  account,
 });

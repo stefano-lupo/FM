@@ -10,6 +10,8 @@ class Http {
 
   getHeaders() {
     const account = store.getState().get('account');
+    const user = store.getState().get('user');
+    console.log(user);
     let headers = {
       "Accept": "application/json",
       "Content-Type": "application/json",
@@ -19,8 +21,10 @@ class Http {
       console.log(`tokenSource = ${this.tokenSource}`);
       console.log(`account.tokensource = ${account.get(this.tokenSource)}`);
       headers.Authorization = `OAuth ${account.get(this.tokenSource)}`;
-    } else {
+    } else if(this.tokenSource === 'accountAuthToken') {
       headers['x-access-token'] = account.get(this.tokenSource);
+    } else {
+      headers['x-access-token'] = user.get(this.tokenSource);
     }
     return headers;
   }

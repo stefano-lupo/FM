@@ -19,4 +19,12 @@ export const formStyle = StyleSheet.create({
     marginBottom: 20,
     alignContent: 'center',
   },
+  multiline: {
+    height: 150,
+    borderWidth: 1,
+    alignContent: 'center',
+  },
+  dummyPadding: {
+    paddingBottom: 200,
+  }
 });

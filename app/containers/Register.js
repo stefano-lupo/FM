@@ -5,7 +5,7 @@ import { Actions } from 'react-native-router-flux';
 
 import { StyleSheet, TextInput, Text, View, Button, ScrollView } from 'react-native';
 
-
+import { formStyle } from '../styles/generic';
 import { register } from '../actions/account';
 
 const styles = StyleSheet.create({
@@ -97,7 +97,7 @@ class Register extends React.Component {
             secureTextEntry={true}
           />
           <Button title="Register" onPress={() => this.register()} />
-          <View style={styles.dummyPadding}></View>
+          <View style={formStyle.dummyPadding}></View>
         </View>
       </ScrollView>
     );

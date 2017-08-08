@@ -13,6 +13,7 @@ import ProviderCategories from './containers/providers/ProviderCategories';
 import ProviderList from './containers/providers/ProviderList';
 import ProviderProfile from './containers/providers/ProviderProfile';
 import ProviderReview from './containers/providers/ProviderReview';
+import RequestJob from './containers/providers/RequestJob';
 
 
 // Simple component to render something in place of icon
@@ -57,6 +58,12 @@ export default class AppRouter extends React.Component {
                 key="providerReview"
                 component={ProviderReview}
                 title="Provider Review"
+                hideTabBar={true}
+              />
+              <Scene
+                key="requestJob"
+                component={RequestJob}
+                title="Request Job"
                 hideTabBar={true}
               />
             </Scene>

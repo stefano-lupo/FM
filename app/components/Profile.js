@@ -44,7 +44,7 @@ const styles = StyleSheet.create({
 export default class Profile extends React.Component {
 
   onRequestJob(provider) {
-    Action.requestJob({provider});
+    Actions.requestJob({provider});
   }
 
   reviewSelected(review) {
@@ -87,7 +87,7 @@ export default class Profile extends React.Component {
             })
             }
           </Carousel>
-          <Button full onPress={this.requestJob(provider)}>
+          <Button full onPress={() => this.onRequestJob(provider)}>
             <Text>Request a job</Text>
           </Button>
           <Text h2>Reviews</Text>
