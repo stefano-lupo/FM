@@ -1,7 +1,7 @@
 import Http from './http';
 
-// const URL = 'http://192.168.1.10:3000';
-const URL = 'http://192.168.1.17:3000';
+const URL = 'http://192.168.1.10:3000';
+// const URL = 'http://192.168.1.17:3000';
 // const URL='http://10.0.0.9:3000';
 // const URL = 'http://192.168.1.28:3000';
 //  const URL = 'http://86.43.98.198:3000';

@@ -11,8 +11,9 @@ export default function (state = initialState, action) {
     case 'LOGGED_IN': {
       let { user } = payload;
       console.log(`Logged in User reducer`);
+      console.log(payload);
       user = createUser(user);
-      console.log(user);
+
       return user;
     }
 
@@ -21,12 +22,10 @@ export default function (state = initialState, action) {
       const job = createJob(payload);
       console.log(job);
 
-      const requested = state.jobs.requested;
-      console.log(requested.isList());
+      const jobs = state.jobs.merge({ requested: state.jobs.get('requested').push(job) });
 
-      requested.merge(job);
 
-      return state.jobs.merge({requested});
+      return state.merge({ jobs });
     }
   }
   return state;

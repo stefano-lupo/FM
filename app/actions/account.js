@@ -15,7 +15,6 @@ export const login = (email, password) => {
   return dispatch => {
     api.login(email, password).then(payload => {
       if(payload.success) {
-        console.log(payload);
         // Note this will be handled by 2 reducers: one for acc, one for user
         dispatch({type: 'LOGGED_IN', payload});
       }

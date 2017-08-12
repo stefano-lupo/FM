@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
 import { StyleSheet, Text, View } from 'react-native';
-import { List, ListItem } from 'native-base';
+import { List, ListItem } from 'react-native-elements';
 
 
 class Home extends React.Component {
@@ -11,36 +11,45 @@ class Home extends React.Component {
   componentDidMount() {
   }
 
-  renderActiveJobs(activeJobs) {
-    if(activeJobs.isEmpty()) {
-      return <Text>You have no active jobs</Text>
+  onJobSelected(job) {
+    console.log("Selected job");
+  }
+
+  renderJobsList(title, jobs) {
+    if(jobs.isEmpty()) {
+      return null;
     }
 
     return (
-      <List>
-        {
-          activeJobs.map((job) => (
-            <ListItem
-              key={job._id}
-              title={job.title}
-            />
-          ))
-        }
-      </List>
+      <View>
+        <Text>{title}</Text>
+        <List>
+          {
+            jobs.map((job) => (
+              <ListItem
+                key={job._id}
+                title={`${job.category}, ${job.title}`}
+                subtitle={job.description}
+                onPress={() => this.onJobSelected()}
+              />
+            ))
+          }
+        </List>
+      </View>
     );
   }
 
   render() {
-    const { accountAuthToken, email, fbAccessToken } = this.props.account;
     const { user } = this.props;
+    const requested = user.jobs.get('requested');
+    const active = user.jobs.get('active');
+    const completed = user.jobs.get('completed');
     return (
       <View>
-        <Text>Welcome { user.getName() }</Text>
-        <Text>Email: { email }</Text>
-        <Text>FBToken: { fbAccessToken }</Text>
-        <Text>Account Auth Token: { accountAuthToken.substr(0,10) }</Text>
-        <Text>User Auth Token: { user.userAuthToken.substr(0,10) }</Text>
-        {this.renderActiveJobs(user.jobs.active)}
+        <Text>{`Hello ${user.getName()}`}</Text>
+        {this.renderJobsList('Requested', requested)}
+        {this.renderJobsList('Active', active)}
+        {this.renderJobsList('Completed', completed)}
       </View>
     );
   }

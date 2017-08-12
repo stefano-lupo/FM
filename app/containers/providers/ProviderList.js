@@ -29,7 +29,7 @@ class ProviderList extends React.Component {
         {
           providers.map((provider) => (
             <ListItem
-              key={provider.id}
+              key={provider._id}
               title={provider.getName()}
               subtitle={provider.score}
               avatar={{uri: provider.thumbnail}}

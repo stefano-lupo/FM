@@ -11,15 +11,12 @@ class Http {
   getHeaders() {
     const account = store.getState().get('account');
     const user = store.getState().get('user');
-    console.log(user);
     let headers = {
       "Accept": "application/json",
       "Content-Type": "application/json",
     };
 
     if(this.tokenSource === 'fbAccessToken') {
-      console.log(`tokenSource = ${this.tokenSource}`);
-      console.log(`account.tokensource = ${account.get(this.tokenSource)}`);
       headers.Authorization = `OAuth ${account.get(this.tokenSource)}`;
     } else if(this.tokenSource === 'accountAuthToken') {
       headers['x-access-token'] = account.get(this.tokenSource);
@@ -36,8 +33,6 @@ class Http {
         endpoint += '?' + encodeURIComponent(paramKey) + '=' + encodeURIComponent(paramObj[paramKey]) + '&';
       })
     });
-
-    console.log(`${this.url}${endpoint}`);
 
     return fetch(`${this.url}${endpoint}`,{method: "GET", headers: this.getHeaders()})
       .then(function(response) {

@@ -9,10 +9,8 @@ export default function (state = initialState, action) {
 
     case 'LOGGED_IN': {
       const { account, fbAccessToken } = payload;
-      console.log("Account logged in reducer");
-      console.log(account);
-      console.log(fbAccessToken);
       // Note FB access token may be null if normal login used
+      console.log(account);
       return createAccount(account, fbAccessToken);
     }
   }

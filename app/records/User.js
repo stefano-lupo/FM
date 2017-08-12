@@ -1,4 +1,5 @@
-import Immutable, { Record, List } from 'immutable';
+import Immutable, { Record, List, Map } from 'immutable';
+import { createJob } from './Job';
 
 
 const UserRecord = new Record({
@@ -25,11 +26,11 @@ export class User extends UserRecord {
 export function createUser(userData) {
   return new User({
     ...userData,
-    jobs: {
-      requested: new List(userData.jobs.requested),
-      active: new List(userData.jobs.active),
-      completed: new List(userData.jobs.completed)
-    },
+    jobs: new Map({
+      requested: userData.jobs ? new List(userData.jobs.requested.map(job => createJob(job))) : new List(),
+      active: userData.jobs ? new List(userData.jobs.active.map(job => createJob(job))) : new List(),
+      completed: userData.jobs ? new List(userData.jobs.completed.map(job => createJob(job))) : new List()
+    }),
     reviews: List(userData.reviews),
   });
 }

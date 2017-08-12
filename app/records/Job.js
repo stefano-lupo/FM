@@ -1,6 +1,7 @@
 import Immutable from 'immutable';
 
 const JobRecord = Immutable.Record({
+  _id: undefined,
   userID: undefined,
   providerID: undefined,
   title: undefined,

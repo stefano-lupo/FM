@@ -77,7 +77,6 @@ export default class Profile extends React.Component {
             style={styles.carouselContainer}
             autoplay
             pageInfo
-            onAnimateNextPage={(p) => console.log(p)}
           >
             {provider.images.map((image) => {
               return (
