@@ -15,3 +15,11 @@ export const requestJob = (providerID, title, description, category) => {
     }).catch(error => console.log(error));
   }
 };
+
+export const fetchMessages = (jobID) => {
+  return dispatch => {
+    api.getMessages(jobID).then(response => {
+      dispatch({ type: 'FETCHED_MESSAGES', payload: { response, jobID }});
+    }).catch(error => console.log(error));
+  }
+};

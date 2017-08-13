@@ -1,4 +1,4 @@
-import Immutable from 'immutable';
+import Immutable, { List } from 'immutable';
 import moment from 'moment';
 
 const JobRecord = Immutable.Record({
@@ -13,6 +13,7 @@ const JobRecord = Immutable.Record({
   category: undefined,
   status: undefined,
   review: undefined,
+  messages: undefined,
 });
 
 export class Job extends JobRecord {
@@ -26,5 +27,6 @@ export const createJob = (jobData) => {
     requestDate: jobData.requestDate ? moment(jobData.requestDate) : undefined,
     startDate: jobData.startDate ? moment(jobData.startDate) : undefined,
     completionDate: jobData.completionDate ? moment(jobData.completionDate) : undefined,
+    messages: new List(jobData.message)
   })
 };

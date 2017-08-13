@@ -10,7 +10,6 @@ export default function (state = initialState, action) {
     case 'LOGGED_IN': {
       const { account, fbAccessToken } = payload;
       // Note FB access token may be null if normal login used
-      console.log(account);
       return createAccount(account, fbAccessToken);
     }
   }

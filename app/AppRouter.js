@@ -11,7 +11,8 @@ import Register from './containers/Register';
 import Home from './containers/home/Home';
 import JobProfile from './containers/home/JobProfile';
 
-import Settings from './containers/Settings';
+import Chat from './containers/chat/Chat';
+import ChatList from './containers/chat/ChatList';
 
 import ProviderCategories from './containers/providers/ProviderCategories';
 import ProviderList from './containers/providers/ProviderList';
@@ -93,12 +94,18 @@ export default class AppRouter extends React.Component {
             </Scene>
 
 
-            {/* Settings */}
-            <Scene key="settings" title="Settings" icon={TabIcon}>
+            {/* Chat */}
+            <Scene key="chatTab" title="Chat" icon={TabIcon}>
               <Scene
-                key="settingsTab"
-                component={Settings}
-                title="Settings"
+                key="chatList"
+                component={ChatList}
+                title="ChatList"
+                initial={true}
+              />
+              <Scene
+                key="chat"
+                component={Chat}
+                title="Chat"
               />
             </Scene>
 
