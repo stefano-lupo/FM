@@ -15,7 +15,7 @@ export const containerStyle = StyleSheet.create({
 export const formStyle = StyleSheet.create({
   textInput: {
     height: 50,
-    padding: 5,
+    paddingVertical: 5,
     marginBottom: 20,
     alignContent: 'center',
   },

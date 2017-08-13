@@ -8,6 +8,7 @@ import { Container, Content, Footer, FooterTab, Button, Text, H1, Icon } from 'n
 
 import { containerStyle, formStyle } from '../styles/generic';
 import { login, loggedInToFB } from '../actions/account';
+import COLOURS from '../styles/colours';
 
 const styles = StyleSheet.create({
   headerContainer: {
@@ -77,9 +78,9 @@ class Login extends React.Component {
               value={this.state.password}
               secureTextEntry={true}
             />
-            <Button block onPress={() => this.login()}><Text>Login</Text></Button>
+            <Button style={{backgroundColor: COLOURS.ACCENT}} block onPress={() => this.login()}><Text>Login</Text></Button>
             <Text style={{textAlign: 'center', paddingVertical: 20}}>Or</Text>
-            <Button iconLeft block onPress={() => this.logInFb()}>
+            <Button style={{backgroundColor: COLOURS.ACCENT}} iconLeft block onPress={() => this.logInFb()}>
               <Icon name="pizza" />
               <Text>Login with Facebook</Text>
             </Button>
@@ -91,7 +92,7 @@ class Login extends React.Component {
         </Content>
         <Footer>
           <FooterTab>
-            <Button full onPress={() => Actions.register()}>
+            <Button style={{backgroundColor: COLOURS.ACCENT}} full onPress={() => Actions.register()}>
               <Text>Register for an Account</Text>
             </Button>
           </FooterTab>

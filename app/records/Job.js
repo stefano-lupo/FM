@@ -1,4 +1,5 @@
 import Immutable from 'immutable';
+import moment from 'moment';
 
 const JobRecord = Immutable.Record({
   _id: undefined,
@@ -22,7 +23,8 @@ export const createJob = (jobData) => {
 
   return new Job({
     ...jobData,
-    requestDate: new Date(),
-    status: 'requested',
+    requestDate: jobData.requestDate ? moment(jobData.requestDate) : undefined,
+    startDate: jobData.startDate ? moment(jobData.startDate) : undefined,
+    completionDate: jobData.completionDate ? moment(jobData.completionDate) : undefined,
   })
 };

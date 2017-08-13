@@ -2,10 +2,14 @@ import React from 'react';
 import { Text } from 'react-native';
 import { Scene, Router} from 'react-native-router-flux';
 
+import COLOURS from './styles/colours';
+
+
 import Login from './containers/Login';
 import Register from './containers/Register';
 
-import Home from './containers/Home';
+import Home from './containers/home/Home';
+import JobProfile from './containers/home/JobProfile';
 
 import Settings from './containers/Settings';
 
@@ -31,9 +35,13 @@ export default class AppRouter extends React.Component {
         <Scene key="root">
           <Scene
             key="tabbar"
-            tabBarPosition={"bottom"}
             tabs={true}
-            tabBarStyle={{ backgroundColor: '#00aaFF' }} >
+            tabBarPosition="bottom"
+/*            tabBarStyle={{ backgroundColor: COLOURS.ACCENT }}
+            activeBackgroundColor={{backgroundColor: 'yellow'}}
+            ativeTintColor="white"
+            indicatorStyle={{backgroundColor: 'white'}}*/
+          >
 
             {/* Provider Search */}
             <Scene key="providersTab" title="Providers" icon={TabIcon}>
@@ -75,6 +83,12 @@ export default class AppRouter extends React.Component {
                 key="home"
                 component={Home}
                 title="Home"
+                hideNavBar={true}
+              />
+              <Scene
+                key="jobProfile"
+                component={JobProfile}
+                title="Job Profile"
               />
             </Scene>
 
