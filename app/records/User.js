@@ -13,7 +13,7 @@ const UserRecord = new Record({
     completed: new List(),
   },
   reviews: new List(),
-  rating: undefined,  
+  rating: undefined,
 });
 
 export class User extends UserRecord {
@@ -24,6 +24,7 @@ export class User extends UserRecord {
 }
 
 export function createUser(userData) {
+  return null;
   return new User({
     ...userData,
     jobs: new Map({

@@ -1,13 +1,12 @@
 import api from '../api/api';
 
 export const loggedInToFB = (fbAccessToken) => {
-  return dispatch => {
-    api.loginWithFb(fbAccessToken).then(payload => {
-      if(payload.success) {
-        // Note this will be handled by 2 reducers: one for acc, one for user
-        dispatch({ type: 'LOGGED_IN', payload: {...payload, fbAccessToken}});
-      }
-    }).catch(error => console.log(error));
+  return async (dispatch) => {
+    const payload = await api.loginWithFb(fbAccessToken);
+    if(payload.ok) {
+      payload.json.fbAccessToken = fbAccessToken;
+      dispatch({ type: 'LOGGED_IN', payload: payload.json});
+    }
   }
 };
 
@@ -15,10 +14,9 @@ export const login = (email, password) => {
   return dispatch => {
     api.login(email, password).then(payload => {
       if(payload.success) {
-        // Note this will be handled by 2 reducers: one for acc, one for user
         dispatch({type: 'LOGGED_IN', payload});
       }
-    }).catch(error => console.log(error));
+    }).catch(error => console.log(`error here ${error}`));
   }
 };
 

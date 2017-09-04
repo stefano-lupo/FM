@@ -11,11 +11,12 @@ class ProviderCategories extends React.Component {
 
   componentDidMount() {
     if(!this.props.categories) {
-     this.props.fetchCategories();
+    // this.props.fetchCategories();
     }
   }
 
   render() {
+    return null;
     const categories = this.props.subCategories || this.props.categories;
     if(categories) {
       return (

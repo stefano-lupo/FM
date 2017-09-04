@@ -8,10 +8,8 @@ export default function (state = initialState, action) {
   switch (type) {
 
     case 'LOGGED_IN': {
-      const { account, fbAccessToken } = payload;
       // Note FB access token may be null if normal login used
-      console.log(account);
-      return createAccount(account, fbAccessToken);
+      return createAccount(payload);
     }
   }
 

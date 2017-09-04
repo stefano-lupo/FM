@@ -42,18 +42,22 @@ class Http {
     .catch(err => console.log(err));
   }
 
-  post(endpoint, body) {
+  async post(endpoint, body) {
     //console.log(`Posting ${this.url+endpoint}`);
-    return fetch(this.url+endpoint,
-      {
-        headers: this.getHeaders(),
-        method: 'POST',
-        body: JSON.stringify(body)
-      }
-    ).then(response => {
-      return response.json();
-    })
-    .catch(err => console.log(err));
+    try {
+      let response = await fetch(this.url + endpoint,
+        {
+          headers: this.getHeaders(),
+          method: 'POST',
+          body: JSON.stringify(body)
+        }
+      );
+      let validated = {ok: response.ok};
+      validated.json = await response.json();
+      return validated;
+    } catch (err) {
+      console.log(`Error occured in post: ${err}`);
+    }
   }
 }
 

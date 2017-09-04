@@ -25,7 +25,7 @@ class Api extends Http {
     )
   }
 
-   loginWithFb(fbAccessToken) {
+  loginWithFb(fbAccessToken) {
     return this.post('/auth/facebook', { fbAccessToken });
   }
 
@@ -34,7 +34,7 @@ class Api extends Http {
   }
 
   register(registerForm) {
-    return this.post('/auth/register', { registerForm });
+    return this.post('/auth/register', { ...registerForm });
   }
 
   requestJob(jobRequest) {

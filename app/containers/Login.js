@@ -36,7 +36,8 @@ class Login extends React.Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    if(nextProps.account.accountAuthToken && nextProps.user.userAuthToken) {
+    console.log(nextProps.account);
+    if(nextProps.account.auth.token ) {
       Actions.replace('tabbar');
     }
   }
