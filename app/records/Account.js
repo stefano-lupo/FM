@@ -1,9 +1,10 @@
 import { Record } from 'immutable';
-import { List } from 'immutable';
+import Immutable, { List } from 'immutable';
 
 import { User } from './User';
+import { createProvider } from './Provider';
 
-export const Account = new Record({
+const AccountRecord = Immutable.Record({
   id: undefined,
   auth: undefined,
   fbAccessToken: undefined,
@@ -13,12 +14,18 @@ export const Account = new Record({
   providers: new List(),
 });
 
+export class Account extends AccountRecord {
+
+  getName() {
+    return `${this.firstName} ${this.lastName}`;
+  }
+}
+
 
 
 export function createAccount(accountData) {
-  console.log(accountData);
   return new Account({
     ...accountData,
-    providers: new List(),
+    providers: List(accountData.providers.map(provider => createProvider(provider))),
   })
 }

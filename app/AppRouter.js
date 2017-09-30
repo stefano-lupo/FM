@@ -7,6 +7,8 @@ import COLOURS from './styles/colours';
 
 import Login from './containers/Login';
 import Register from './containers/Register';
+import SelectUser from './containers/SelectUser';
+import RegisterProvider from './containers/RegisterProvider';
 
 import Home from './containers/home/Home';
 import JobProfile from './containers/home/JobProfile';
@@ -107,6 +109,8 @@ export default class AppRouter extends React.Component {
 
           <Scene key="login" title="Login" component={Login} initial={true} hideNavBar={true} />
           <Scene key="register" title="Register" component={Register} />
+          <Scene key="selectUser" title="Select User" component={SelectUser} hideNavBar={true}/>
+          <Scene key="registerProvider" title="Register Provider" component={RegisterProvider} hideNavBar={true}/>
         </Scene>
       </Router>
     );

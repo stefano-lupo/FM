@@ -1,23 +1,18 @@
 import Immutable from 'immutable';
 
 const ProviderRecord = Immutable.Record({
-  _id: undefined,
-  firstName: "Joe",
-  lastName: "Blogs",
-  email: undefined,
+  id: undefined,
+  name: "Derp COmpany LTD",
   category: undefined,
+  description: undefined,
   score: undefined,
   images: new Immutable.List(),
   thumbnail: undefined,
-  description: undefined,
   reviews: new Immutable.List(),
 });
 
 export class Provider extends ProviderRecord {
 
-  getName() {
-    return `${this.firstName} ${this.lastName}`;
-  }
 }
 
 export const createProvider = (providerData) => {
@@ -27,6 +22,7 @@ export const createProvider = (providerData) => {
     ...providerData,
     _id,
     images: new Immutable.List(images),
-    reviews: new Immutable.List(reviews)
+    reviews: new Immutable.List(reviews),
+    thumbnail: providerData.thumbnail || "https://cdn2.iconfinder.com/data/icons/business-office-4/256/Office-512.png"
   })
 }
