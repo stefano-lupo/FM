@@ -1,5 +1,7 @@
 import { store } from '../../App';
 
+export const URL = "http://10.0.0.4:3000";
+
 class HTTP {
 
   constructor(URL, tokenSource) {
