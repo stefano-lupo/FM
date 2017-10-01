@@ -1,4 +1,4 @@
-import Http from './http';
+import Http from './HTTP';
 
 const URL = 'https://graph.facebook.com';
 

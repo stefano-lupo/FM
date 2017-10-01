@@ -103,14 +103,8 @@ class Login extends React.Component {
   }
 }
 
-
-// function mapStateToProps({ account : { authToken }}) {
-//   return {
-//     authToken
-//   };
-// }
-
 function mapStateToProps(store) {
+  console.log(store);
   return {
     account: store.get('account'),
     user: store.get('user'),

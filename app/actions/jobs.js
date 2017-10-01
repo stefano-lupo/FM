@@ -1,4 +1,4 @@
-import api from '../api/api';
+import api from '../api/UserApi';
 import { createJob } from '../records/Job'
 
 export const requestJob = (providerID, title, description, category) => {

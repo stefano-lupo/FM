@@ -1,6 +1,7 @@
 import Immutable from 'immutable';
 
-const ProviderRecord = Immutable.Record({
+const MyProviderRecord = Immutable.Record({
+  // Really should inherit these from Provider
   id: undefined,
   name: "Derp COmpany LTD",
   category: undefined,
@@ -9,24 +10,25 @@ const ProviderRecord = Immutable.Record({
   images: new Immutable.List(),
   thumbnail: undefined,
   reviews: new Immutable.List(),
+
+  // Extra stuff for user's provider
+  auth: {
+    token: undefined,
+    expiresAt: undefined
+  },
 });
 
-export class Provider extends ProviderRecord {
+export class MyProvider extends MyProviderRecord {
   /*
-  constructor(providerData) {
-    super(providerData);
-  }
-  */
+   constructor(providerData) {
+   super(providerData);
+   }
+   */
 }
 
-export const createProvider = (providerData) => {
-  const { images, reviews } = providerData;
-
-  return new Provider({
+export const createMyProvider = (providerData) => {
+  return new MyProvider({
     ...providerData,
-    id,
-    images: new Immutable.List(images),
-    reviews: new Immutable.List(reviews),
     thumbnail: providerData.thumbnail || "https://cdn2.iconfinder.com/data/icons/business-office-4/256/Office-512.png"
   })
 };

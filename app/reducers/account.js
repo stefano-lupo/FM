@@ -1,5 +1,7 @@
 import { Account, createAccount } from '../records/Account';
 
+import { MyProvider, createMyProvider } from '../records/MyProvider';
+
 const initialState = new Account();
 
 export default function (state = initialState, action) {
@@ -7,13 +9,9 @@ export default function (state = initialState, action) {
 
   switch (type) {
 
+    // Note FB access token may be null if normal login used
     case 'LOGGED_IN': {
-      // Note FB access token may be null if normal login used
       return createAccount(payload);
-    }
-
-    case 'REGISTERED_SERVICE_PROVIDER': {
-
     }
   }
 

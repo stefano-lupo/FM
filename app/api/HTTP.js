@@ -1,6 +1,6 @@
 import { store } from '../../App';
 
-class Http {
+class HTTP {
 
   constructor(URL, tokenSource) {
     this.url = URL;
@@ -11,39 +11,49 @@ class Http {
   getHeaders() {
     const account = store.getState().get('account');
     const user = store.getState().get('user');
+    const myProvider = store.getState().get('myProvider');
+
     let headers = {
       "Accept": "application/json",
       "Content-Type": "application/json",
     };
 
     if(this.tokenSource === 'fbAccessToken') {
-      headers.Authorization = `OAuth ${account.get(this.tokenSource)}`;
+      headers.Authorization = `OAuth ${account.get('fbAccessToken')}`;
     } else if(this.tokenSource === 'accountAuthToken') {
-      headers['x-access-token'] = account.get(this.tokenSource);
-    } else {
-      headers['x-access-token'] = user.get(this.tokenSource);
+      headers['x-access-token'] = account.get('auth').token;
+    } else if(this.tokenSource === 'userAuthToken') {
+      headers['x-access-token'] = user.get('auth').token;
+    } else if(this.tokenSource === 'providerAuthToken') {
+      headers['x-access-token'] = myProvider.get('auth').token;
     }
+
     return headers;
   }
 
-  get(endpoint, params = []) {
-
+  async get(endpoint, params = []) {
     params.map((paramObj) => {
       Object.keys(paramObj).map((paramKey) => {
         endpoint += '?' + encodeURIComponent(paramKey) + '=' + encodeURIComponent(paramObj[paramKey]) + '&';
       })
     });
 
-    return fetch(`${this.url}${endpoint}`,{method: "GET", headers: this.getHeaders()})
-      .then(function(response) {
-        return response.json();
-      }
-    )
-    .catch(err => console.log(err));
+    try {
+      let response = await fetch(this.url + endpoint,
+        {
+          headers: this.getHeaders(),
+          method: 'GET',
+        }
+      );
+      let validated = {ok: response.ok};
+      validated.json = await response.json();
+      return validated;
+    } catch (err) {
+      console.log(`Error occured in HTTP GET: ${err}`);
+    }
   }
 
   async post(endpoint, body) {
-    //console.log(`Posting ${this.url+endpoint}`);
     try {
       let response = await fetch(this.url + endpoint,
         {
@@ -56,9 +66,9 @@ class Http {
       validated.json = await response.json();
       return validated;
     } catch (err) {
-      console.log(`Error occured in post: ${err}`);
+      console.log(`Error occured in HTTP POST: ${err}`);
     }
   }
 }
 
-export default Http;
+export default HTTP;

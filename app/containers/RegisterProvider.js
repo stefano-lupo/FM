@@ -8,7 +8,7 @@ import { Container, Content, Footer, FooterTab, Button, H1, H2, P, Icon } from '
 import { List, ListItem } from 'react-native-elements';
 
 import { containerStyle, formStyle } from '../styles/generic';
-import { registerServiceProvider } from '../actions/account';
+import { registerMyProvider } from '../actions/account';
 import COLOURS from '../styles/colours';
 
 const styles = StyleSheet.create({
@@ -37,8 +37,15 @@ class RegisterProvider extends React.Component {
     }
   }
 
-  register() {
-    console.log("hit");
+  componentWillReceiveProps({ myProvider }) {
+    if(myProvider) {
+      Actions.home({type: 'provider'});
+    }
+  }
+
+  registerServiceProvider(accountId) {
+    const { name, description, category } = this.state;
+    this.props.registerMyProvider({name, description, category, accountId});
   }
 
   render() {
@@ -59,15 +66,18 @@ class RegisterProvider extends React.Component {
             <TextInput
               style={formStyle.textInput}
               onChangeText={(description) => this.setState({description})}
+              placeholder="We Lift Weights"
               value={this.state.description}
+              multiline={true}
             />
             <Text>Category </Text>
             <TextInput
+              placeholder="Health & Fitness"
               style={formStyle.textInput}
               onChangeText={(category) => this.setState({category})}
               value={this.state.category}
             />
-            <Button style={{backgroundColor: COLOURS.ACCENT}} block onPress={() => this.register()}><Text>Register</Text></Button>
+            <Button style={{backgroundColor: COLOURS.ACCENT}} block onPress={() => this.registerServiceProvider(accountId)}><Text>Register</Text></Button>
           </View>
         </Content>
       </Container>
@@ -75,9 +85,14 @@ class RegisterProvider extends React.Component {
   }
 }
 
-
-function matchDispatchToProps(dispatch){
-  return bindActionCreators({ registerServiceProvider }, dispatch);
+function mapStateToProps(store) {
+  return {
+    myProvider: store.get('myProvider')
+  };
 }
 
-export default connect(null, matchDispatchToProps)(RegisterProvider);
+function matchDispatchToProps(dispatch){
+  return bindActionCreators({ registerMyProvider }, dispatch);
+}
+
+export default connect(mapStateToProps, matchDispatchToProps)(RegisterProvider);

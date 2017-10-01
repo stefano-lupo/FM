@@ -8,7 +8,7 @@ import { Container, Content, Footer, FooterTab, H1, H2, P, Icon, Button } from '
 import { List, ListItem } from 'react-native-elements';
 
 import { containerStyle, formStyle } from '../styles/generic';
-import { login, loggedInToFB } from '../actions/account';
+import { loginMyProvider } from '../actions/account';
 import COLOURS from '../styles/colours';
 
 const styles = StyleSheet.create({
@@ -19,12 +19,24 @@ const styles = StyleSheet.create({
 
 class SelectUser extends React.Component {
 
-  registerProvider(id) {
-    Actions.registerProvider({id});
+  componentWillReceiveProps({user, myProvider}) {
+    if(user) {
+      Actions.home({type: 'user'});
+    } else if (myProvider) {
+      Actions.home({type: 'provider'});
+    }
   }
 
-  selectUser(user) {
-    console.log("derp");
+  loginUser() {
+
+  }
+
+  loginProvider(id) {
+    this.props.loginMyProvider(id);
+  }
+
+  registerProvider(accountId) {
+    Actions.registerProvider({accountId});
   }
 
   renderMyProviders(account) {
@@ -40,7 +52,7 @@ class SelectUser extends React.Component {
             <ListItem
               key={provider.id}
               title={provider.name}
-              onPress={() => this.selectUser(provider)}
+              onPress={() => this.loginProvider(provider.id)}
               avatar={{uri: provider.thumbnail}}
             />
           ))
@@ -56,7 +68,7 @@ class SelectUser extends React.Component {
       <Container>
         <Content contentContainerStyle={{flex: 1}} padder={true} >
           <H2>Log in as User</H2>
-          <TouchableOpacity>
+          <TouchableOpacity onPress={this.loginUser}>
             <View style={{flexDirection: 'row'}}>
               <View stlye={{flex: 2}}>
                 <Icon name='person' theme={{ iconFamily: 'FontAwesome' }}/>
@@ -85,11 +97,13 @@ class SelectUser extends React.Component {
 function mapStateToProps(store) {
   return {
     account: store.get('account'),
+    myProvider: store.get('myProvider'),
+    user: store.get('user')
   };
 }
 
 function matchDispatchToProps(dispatch){
-  return bindActionCreators({ loggedInToFB, login }, dispatch);
+  return bindActionCreators({ loginMyProvider }, dispatch);
 }
 
 export default connect(mapStateToProps, matchDispatchToProps)(SelectUser);

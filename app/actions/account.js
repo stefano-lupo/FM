@@ -1,8 +1,8 @@
-import api from '../api/api';
+import accountApi from '../api/AccountApi';
 
 export const loggedInToFB = (fbAccessToken) => {
   return async (dispatch) => {
-    const payload = await api.loginWithFb(fbAccessToken);
+    const payload = await accountApi.loginWithFb(fbAccessToken);
     if(payload.ok) {
       payload.json.fbAccessToken = fbAccessToken;
       dispatch({ type: 'LOGGED_IN', payload: payload.json});
@@ -12,7 +12,7 @@ export const loggedInToFB = (fbAccessToken) => {
 
 export const login = (email, password) => {
   return dispatch => {
-    api.login(email, password).then(payload => {
+    accountApi.login(email, password).then(payload => {
       if(payload.success) {
         dispatch({type: 'LOGGED_IN', payload});
       }
@@ -22,7 +22,7 @@ export const login = (email, password) => {
 
 export const register = (registerForm) => {
   return dispatch => {
-    api.register(registerForm).then(payload => {
+    accountApi.register(registerForm).then(payload => {
       if(payload.success) {
         dispatch({ type: 'LOGGED_IN', payload });
       }
@@ -31,16 +31,20 @@ export const register = (registerForm) => {
   }
 };
 
-export const registerServiceProvider = async (registerForm) => {
-  return async (dispatch)=>  {
-    try {
-      let payload = await api.registerServiceProvider(registerForm);
-      if(payload.success) {
-        dispatch({type: "REGISTERED_SERVICE_PROVIDER", payload});
-      }
-      return null;
-    } catch (e) {
-      console.log(e);
+export const registerMyProvider = (registerForm) => {
+  return async (dispatch) => {
+    const payload = await accountApi.registerMyProvider(registerForm);
+    if(payload.ok) {
+      dispatch({type: 'REGISTERED_PROVIDER', payload: payload.json});
+    }
+  }
+};
+
+export const loginMyProvider = (providerId) => {
+  return async (dispatch) => {
+    const payload = await accountApi.loginMyProvider(providerId);
+    if(payload.ok) {
+      dispatch({type: 'LOGGED_IN_PROVIDER', payload: payload.json});
     }
   }
 };

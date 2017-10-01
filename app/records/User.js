@@ -3,8 +3,11 @@ import { createJob } from './Job';
 
 
 const UserRecord = new Record({
-  _id: undefined,
-  userAuthToken: undefined,
+  id: undefined,
+  auth: {
+    token: undefined,
+    expiresAt: undefined
+  },
   firstName: undefined,
   lastName: undefined,
   jobs: {

@@ -1,9 +1,9 @@
-import api from '../api/api';
+import providerApi from '../api/MyProviderApi';
 
 
 export const fetchCategories = () => {
   return dispatch => {
-    api.getCategories().then(response => {
+    providerApi.getCategories().then(response => {
       dispatch({type: 'FETCHED_CATEGORIES', payload: response});
     }).catch(error => console.log(error));
   };
@@ -11,7 +11,7 @@ export const fetchCategories = () => {
 
 export const fetchProvidersByCategory = (category) => {
   return dispatch => {
-    api.getProvidersByCategory(category).then(response => {
+    providerApi.getProvidersByCategory(category).then(response => {
       dispatch({type: 'FETCHED_PROVIDERS_BY_CATEGORY', payload: response});
     }).catch(error => console.log(error));
   };
