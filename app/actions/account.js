@@ -30,3 +30,17 @@ export const register = (registerForm) => {
     }).catch(error => console.log(error));
   }
 };
+
+export const registerServiceProvider = async (registerForm) => {
+  return async (dispatch)=>  {
+    try {
+      let payload = await api.registerServiceProvider(registerForm);
+      if(payload.success) {
+        dispatch({type: "REGISTERED_SERVICE_PROVIDER", payload});
+      }
+      return null;
+    } catch (e) {
+      console.log(e);
+    }
+  }
+};

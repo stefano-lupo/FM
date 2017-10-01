@@ -11,6 +11,10 @@ export default function (state = initialState, action) {
       // Note FB access token may be null if normal login used
       return createAccount(payload);
     }
+
+    case 'REGISTERED_SERVICE_PROVIDER': {
+
+    }
   }
 
   return state;

@@ -8,7 +8,7 @@ import { Container, Content, Footer, FooterTab, Button, H1, H2, P, Icon } from '
 import { List, ListItem } from 'react-native-elements';
 
 import { containerStyle, formStyle } from '../styles/generic';
-import { login, loggedInToFB } from '../actions/account';
+import { registerServiceProvider } from '../actions/account';
 import COLOURS from '../styles/colours';
 
 const styles = StyleSheet.create({
@@ -28,25 +28,56 @@ const styles = StyleSheet.create({
 
 class RegisterProvider extends React.Component {
 
+  constructor() {
+    super();
+    this.state = {
+      name: "",
+      description: "",
+      category: "",
+    }
+  }
+
+  register() {
+    console.log("hit");
+  }
+
   render() {
+    const { accountId } = this.props;
     return (
       <Container>
         <Content contentContainerStyle={{flex: 1}} padder={true} >
-          <H1>Register bro</H1>
+          <H1>Register as a Service Provider</H1>
+          <View style={styles.formContainer}>
+            <Text>Name </Text>
+            <TextInput
+              placeholder="Jim's Gym"
+              style={formStyle.textInput}
+              onChangeText={(name) => this.setState({name})}
+              value={this.state.name}
+            />
+            <Text>Description </Text>
+            <TextInput
+              style={formStyle.textInput}
+              onChangeText={(description) => this.setState({description})}
+              value={this.state.description}
+            />
+            <Text>Category </Text>
+            <TextInput
+              style={formStyle.textInput}
+              onChangeText={(category) => this.setState({category})}
+              value={this.state.category}
+            />
+            <Button style={{backgroundColor: COLOURS.ACCENT}} block onPress={() => this.register()}><Text>Register</Text></Button>
+          </View>
         </Content>
       </Container>
     );
   }
 }
 
-function mapStateToProps(store) {
-  return {
-    account: store.get('account'),
-  };
-}
 
 function matchDispatchToProps(dispatch){
-  return bindActionCreators({ loggedInToFB, login }, dispatch);
+  return bindActionCreators({ registerServiceProvider }, dispatch);
 }
 
-export default connect(mapStateToProps, matchDispatchToProps)(RegisterProvider);
+export default connect(null, matchDispatchToProps)(RegisterProvider);

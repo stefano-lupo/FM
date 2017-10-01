@@ -19,8 +19,8 @@ const styles = StyleSheet.create({
 
 class SelectUser extends React.Component {
 
-  registerProvider() {
-    console.log("beep boop");
+  registerProvider(id) {
+    Actions.registerProvider({id});
   }
 
   selectUser(user) {
@@ -30,7 +30,7 @@ class SelectUser extends React.Component {
   renderMyProviders(account) {
     const { providers } = account;
     if(providers.isEmpty()) {
-      return <P>You have not registered any providers!</P>
+      return <Text>You have not registered any providers!</Text>
     }
 
     return (
@@ -72,7 +72,7 @@ class SelectUser extends React.Component {
         </Content>
         <Footer>
           <FooterTab>
-            <Button style={{backgroundColor: COLOURS.ACCENT}} full onPress={() => this.registerProvider()}>
+            <Button style={{backgroundColor: COLOURS.ACCENT}} full onPress={() => this.registerProvider(account.id)}>
               <Text>Register a Provider</Text>
             </Button>
           </FooterTab>
