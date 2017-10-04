@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { Spinner, H1 } from 'native-base';
 
-import { fetchCategories } from '../../actions/generic';
+import { fetchCategories } from '../../actions/app';
 import CategoryList from '../../components/CategoryList';
 
 class ProviderCategories extends React.Component {
@@ -33,6 +33,7 @@ class ProviderCategories extends React.Component {
 
 
 function mapStateToProps(store) {
+  console.log(store);
   return {
     categories: store.get('providers').get('categories'),
   };

@@ -1,7 +1,7 @@
 import Http, { URL } from './HTTP';
-import Generic from './Generic';
+import App from './App';
 
-class UserApi extends Generic {
+class UserApi extends App {
 
   constructor(url, tokenSource) {
     console.log("\n\n**************************constructing UserApi instance\n\n");

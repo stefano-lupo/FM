@@ -1,6 +1,6 @@
 import Http from './HTTP';
 
-export default class Generic extends Http {
+export default class App extends Http {
 
   constructor(url, tokenSource) {
     console.log(`Constructing Generic instance with token ${tokenSource}\n`);
