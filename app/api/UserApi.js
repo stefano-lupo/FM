@@ -1,17 +1,14 @@
 import Http, { URL } from './HTTP';
+import Generic from './Generic';
 
-class UserApi extends Http {
+class UserApi extends Generic {
 
   constructor(url, tokenSource) {
     console.log("\n\n**************************constructing UserApi instance\n\n");
     super(url, tokenSource);
   }
 
-  getCategories() {
-    return (
-      this.get('/categories')
-    );
-  }
+
 
   getProvidersByCategory(category) {
     return (

@@ -4,14 +4,14 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { Spinner, H1 } from 'native-base';
 
-import { fetchCategories } from '../../actions/providers';
+import { fetchCategories } from '../../actions/generic';
 import CategoryList from '../../components/CategoryList';
 
 class ProviderCategories extends React.Component {
 
   componentDidMount() {
     if(!this.props.categories) {
-    // this.props.fetchCategories();
+      this.props.fetchCategories();
     }
   }
 

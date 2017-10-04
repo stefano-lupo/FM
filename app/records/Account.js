@@ -15,6 +15,7 @@ const AccountRecord = Immutable.Record({
   email: undefined,
   firstName: undefined,
   lastName: undefined,
+  loggedInAs: undefined,
   providers: new List(),
 });
 

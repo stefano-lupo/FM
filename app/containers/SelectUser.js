@@ -21,9 +21,9 @@ class SelectUser extends React.Component {
 
   componentWillReceiveProps({user, myProvider}) {
     if(user) {
-      Actions.home({type: 'user'});
+      Actions.home({loggedInAs: 'USER'});
     } else if (myProvider) {
-      Actions.home({type: 'provider'});
+      Actions.home({loggedInAs: 'PROVIDER'});
     }
   }
 

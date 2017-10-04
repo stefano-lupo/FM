@@ -9,7 +9,6 @@ const MyProviderRecord = Immutable.Record({
   score: undefined,
   images: new Immutable.List(),
   thumbnail: undefined,
-  reviews: new Immutable.List(),
 
   // Extra stuff for user's provider
   auth: {

@@ -47,8 +47,6 @@ class Register extends React.Component {
   }
 
   componentWillReceiveProps(props) {
-    console.log("received props");
-    console.log(props);
     if(props.account.accountAuthToken) {
       Actions.home();
     }
@@ -59,7 +57,6 @@ class Register extends React.Component {
   }
   
   render() {
-    console.log(this.props.account);
     return (
       <ScrollView style={styles.container}>
         <View style={styles.header}>

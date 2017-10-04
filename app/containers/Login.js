@@ -36,7 +36,6 @@ class Login extends React.Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    console.log(nextProps.account);
     if(nextProps.account.auth.token ) {
       Actions.replace('selectUser');
     }
@@ -104,7 +103,6 @@ class Login extends React.Component {
 }
 
 function mapStateToProps(store) {
-  console.log(store);
   return {
     account: store.get('account'),
     user: store.get('user'),

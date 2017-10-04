@@ -13,6 +13,14 @@ export default function (state = initialState, action) {
     case 'LOGGED_IN': {
       return createAccount(payload);
     }
+
+    case 'LOGGED_IN_PROVIDER': {
+      return state.merge({loggedInAs: 'PROVIDER'})
+    }
+
+    case 'LOGGED_IN_USER': {
+      return state.merge({loggedInAs: 'USER'})
+    }
   }
 
   return state;
